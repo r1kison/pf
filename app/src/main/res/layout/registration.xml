@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        style="@style/SimpleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_create"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/com"
+        android:layout_centerHorizontal="true"
+        android:onClick="reg_complete"/>
+
+    <EditText
+        style="@style/InputText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:id="@+id/fio"
+        android:layout_marginBottom="90dp"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:tag="fio" />
+
+    <EditText
+        style="@style/InputText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text=""
+        android:ems="10"
+        android:id="@+id/com"
+        android:layout_centerVertical="true"
+        android:tag="com"
+        android:layout_alignLeft="@+id/fio"
+        android:layout_alignStart="@+id/fio"
+        android:clickable="true"
+        android:editable="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/enter_fio"
+        android:id="@+id/textView16"
+        android:layout_above="@+id/fio"
+        android:layout_alignLeft="@+id/fio"
+        android:layout_alignStart="@+id/fio" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/enter_com"
+        android:id="@+id/textView17"
+        android:layout_above="@+id/com"
+        android:layout_alignLeft="@+id/com"
+        android:layout_alignStart="@+id/com" />
+
+</RelativeLayout>

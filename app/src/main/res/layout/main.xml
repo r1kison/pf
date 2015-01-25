@@ -1,0 +1,138 @@
+<!-- Подложка с белым фоном -->
+
+<!-- Данные команды тут -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#ffffff">
+
+    <!-- Градиент -->
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_gradient"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity"
+        android:background="@drawable/bg">
+
+        <!-- Данные команды -->
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/DataLine"
+            android:id="@+id/data_line">
+
+            <RelativeLayout
+                style="@style/DataBlock"
+                android:id="@+id/games_block">
+                <TextView
+                    android:id="@+id/games_desc"
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#f1f1f1"
+                    android:textSize="12dp"
+                    android:text="@string/games"/>
+                <TextView
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_below="@id/games_desc"
+                    android:textSize="16dp"
+                    android:text="10/10"
+                    android:textColor="#ffffff"
+                    android:id="@+id/games" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/DataBlock"
+                android:id="@+id/league_block"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/games_block"
+                android:layout_toEndOf="@+id/games_block">
+                <TextView
+                    android:id="@+id/league_desc"
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#f1f1f1"
+                    android:textSize="12dp"
+                    android:text="@string/league"/>
+                <TextView
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_below="@id/league_desc"
+                    android:textSize="16dp"
+                    android:text="1"
+                    android:textColor="#ffb9fff3"
+                    android:id="@+id/league" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/DataBlock"
+                android:id="@+id/money_block"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/rep_block"
+                android:layout_toStartOf="@+id/rep_block">
+                <TextView
+                    style="@style/WrapContent"
+                    android:id="@+id/money_desc"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#f1f1f1"
+                    android:textSize="12dp"
+                    android:text="@string/money"/>
+                <TextView
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_below="@id/money_desc"
+                    android:textSize="16dp"
+                    android:text="0"
+                    android:textColor="#ffaeff5d"
+                    android:id="@+id/money" />
+            </RelativeLayout>
+
+            <RelativeLayout style="@style/DataBlock"
+                android:id="@+id/rep_block"
+                android:layout_alignParentRight="true">
+                <TextView
+                    android:id="@+id/rep_desc"
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="#f1f1f1"
+                    android:textSize="12dp"
+                    android:text="@string/rep"/>
+                <TextView
+                    style="@style/WrapContent"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:layout_below="@id/rep_desc"
+                    android:textSize="16dp"
+                    android:text="0"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#fffffb81"
+                    android:id="@+id/rep" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <Button
+        style="@style/BtnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_back"
+        android:id="@+id/btn_back"
+        android:layout_gravity="left|bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="menu_click"
+        android:tag="menu"/>
+
+</RelativeLayout>

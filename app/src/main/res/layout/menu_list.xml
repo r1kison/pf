@@ -1,0 +1,354 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- 1 линия -->
+    <LinearLayout
+        android:id="@+id/line1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dip">
+
+        <!-- Команда -->
+        <RelativeLayout
+            style="@style/MenuItem"
+            android:layout_toLeftOf="@+id/relativeLayout2"
+            android:id="@+id/relativeLayout1"
+            android:tag="team">
+            <ImageView
+                style="@style/MenuImage"
+                android:contentDescription="@string/menu_1"
+                android:id="@+id/menu_1"
+                android:layout_margin="5dp"
+                android:src="@drawable/menu_team"/>
+            <TextView
+                style="@style/MenuText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/menu_1"
+                android:id="@+id/textView1"
+                android:layout_below="@+id/menu_1"/>
+        </RelativeLayout>
+
+        <!-- Выбор основы -->
+        <RelativeLayout
+            style="@style/MenuItem"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/relativeLayout2"
+            android:tag="base">
+            <ImageView
+                style="@style/MenuImage"
+                android:contentDescription="@string/menu_2"
+                android:id="@+id/menu_2"
+                android:layout_margin="5dp"
+                android:src="@drawable/menu_base"/>
+            <TextView
+                style="@style/MenuText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/menu_2"
+                android:id="@+id/textView2"
+                android:layout_below="@+id/menu_2"/>
+        </RelativeLayout>
+
+        <!-- Цвета клуба -->
+        <RelativeLayout
+            style="@style/MenuItem"
+            android:layout_toRightOf="@+id/relativeLayout2"
+            android:id="@+id/relativeLayout3"
+            android:tag="form">
+            <ImageView
+                style="@style/MenuImage"
+                android:contentDescription="@string/menu_3"
+                android:id="@+id/menu_3"
+                android:layout_margin="5dp"
+                android:src="@drawable/menu_form"/>
+            <TextView
+                style="@style/MenuText"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/menu_3"
+                android:id="@+id/textView3"
+                android:layout_below="@+id/menu_3"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 2 линия -->
+    <LinearLayout
+    android:id="@+id/line2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/line1"
+    android:layout_marginTop="15dp">
+
+    <!-- Обычные игры -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/relativeLayout5"
+        android:id="@+id/relativeLayout4"
+        android:tag="games">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_4"
+            android:id="@+id/menu_4"
+            android:src="@drawable/menu_game"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_4"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/menu_4"/>
+    </RelativeLayout>
+
+    <!-- Чемпионат -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout5"
+        android:tag="champ">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_5"
+            android:id="@+id/menu_5"
+            android:src="@drawable/menu_champ"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_5"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/menu_5"/>
+    </RelativeLayout>
+
+    <!-- Эвенты -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toRightOf="@+id/relativeLayout5"
+        android:id="@+id/relativeLayout6"
+        android:tag="events">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_6"
+            android:id="@+id/menu_6"
+            android:src="@drawable/menu_event"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_6"
+            android:id="@+id/textView6"
+            android:layout_below="@+id/menu_6"/>
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 3 линия -->
+    <LinearLayout
+    android:id="@+id/line3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/line2"
+    android:layout_marginTop="15dp">
+    <!-- Тренировки -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toLeftOf="@+id/relativeLayout8"
+        android:id="@+id/relativeLayout7"
+        android:tag="training">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_7"
+            android:id="@+id/menu_7"
+            android:src="@drawable/menu_training"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_7"
+            android:id="@+id/textView7"
+            android:layout_below="@+id/menu_7"/>
+    </RelativeLayout>
+
+    <!-- Стадион -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout8"
+        android:tag="stadium">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_8"
+            android:id="@+id/menu_8"
+            android:src="@drawable/menu_stadium"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_8"
+            android:id="@+id/textView8"
+            android:layout_below="@+id/menu_8"/>
+    </RelativeLayout>
+
+    <!-- Бустеры -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toRightOf="@+id/relativeLayout8"
+        android:id="@+id/relativeLayout9"
+        android:tag="busters">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_9"
+            android:id="@+id/menu_9"
+            android:src="@drawable/menu_boost"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_9"
+            android:id="@+id/textView9"
+            android:layout_below="@+id/menu_9"/>
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 5 линия -->
+    <LinearLayout
+    android:id="@+id/line5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/line3"
+    android:layout_marginTop="15dp">
+
+    <!-- Рейтинг -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toLeftOf="@+id/relativeLayout14"
+        android:id="@+id/relativeLayout13"
+        android:tag="rating">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_13"
+            android:id="@+id/menu_13"
+            android:src="@drawable/menu_rating"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_13"
+            android:id="@+id/textView13"
+            android:layout_below="@+id/menu_13"/>
+    </RelativeLayout>
+
+    <!-- Помощь -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout14"
+        android:tag="help">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_2"
+            android:id="@+id/menu_14"
+            android:src="@drawable/menu_help"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_14"
+            android:id="@+id/textView14"
+            android:layout_below="@+id/menu_14"/>
+    </RelativeLayout>
+
+    <!-- Правила -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toRightOf="@+id/relativeLayout11"
+        android:id="@+id/relativeLayout15"
+        android:tag="rules">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_15"
+            android:id="@+id/menu_15"
+            android:src="@drawable/menu_rules"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_15"
+            android:id="@+id/textView15"
+            android:layout_below="@+id/menu_15"/>
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 4 линия -->
+    <LinearLayout
+    android:id="@+id/line4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@+id/line5"
+    android:layout_marginTop="15dp">
+
+    <!-- Союзы -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_toLeftOf="@+id/relativeLayout11"
+        android:id="@+id/relativeLayout10"
+        android:tag="lock"
+        android:alpha="0.5">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_10"
+            android:id="@+id/menu_10"
+            android:src="@drawable/menu_lock"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_10"
+            android:id="@+id/textView10"
+            android:layout_below="@+id/menu_10"/>
+    </RelativeLayout>
+
+    <!-- Мой союз -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout11"
+        android:alpha="0.5"
+        android:tag="lock">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_11"
+            android:id="@+id/menu_11"
+            android:src="@drawable/menu_lock"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_11"
+            android:id="@+id/textView11"
+            android:layout_below="@+id/menu_11"/>
+    </RelativeLayout>
+
+    <!-- Битва союзов -->
+    <RelativeLayout
+        style="@style/MenuItem"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/relativeLayout11"
+        android:id="@+id/relativeLayout12"
+        android:alpha="0.5"
+        android:tag="lock">
+        <ImageView
+            style="@style/MenuImage"
+            android:contentDescription="@string/menu_12"
+            android:id="@+id/menu_12"
+            android:src="@drawable/menu_lock"/>
+        <TextView
+            style="@style/MenuText"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/menu_12"
+            android:id="@+id/textView12"
+            android:layout_below="@+id/menu_12"/>
+    </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
