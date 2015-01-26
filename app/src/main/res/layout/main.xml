@@ -120,19 +120,27 @@
             tools:context=".MainActivity">
         </FrameLayout>
 
+        <Button
+            style="@style/BtnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_back"
+            android:id="@+id/btn_back"
+            android:layout_gravity="left|bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="menu_click"
+            android:tag="menu"/>
+
     </RelativeLayout>
 
-    <Button
-        style="@style/BtnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_back"
-        android:id="@+id/btn_back"
-        android:layout_gravity="left|bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="menu_click"
-        android:tag="menu"/>
+    <FrameLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/loader"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+    </FrameLayout>
 
 </RelativeLayout>

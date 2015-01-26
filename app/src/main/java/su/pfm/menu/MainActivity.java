@@ -24,7 +24,7 @@ public class MainActivity extends ActionBarActivity {
     TextView money;
     TextView rep;
 
-    FrameLayout pager;
+    FrameLayout pager, loader;
     LayoutInflater ltInflater;
     Button buttonBack;
     Dialog dialog;
@@ -80,6 +80,7 @@ public class MainActivity extends ActionBarActivity {
 
         // ========================================== Загрузка страниц (по умолчанию меню)
         pager = (FrameLayout) findViewById(R.id.pager);
+        loader = (FrameLayout) findViewById(R.id.loader);
         ltInflater = getLayoutInflater();
         buttonBack = (Button) findViewById(R.id.btn_back);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
@@ -103,6 +104,20 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    // Loader
+    public void LoaderShow() {
+        View v;
+        loader.removeAllViews();
+        v = ltInflater.inflate(R.layout.loader, null, false);
+        loader.addView(v);
+    }
+    public void LoaderHide() {
+        loader.removeAllViews();
+    }
+    public void LoaderClose(View v) {
+        loader.removeAllViews();
+    }
+
     // Нажатие кнопки "Создать" при регистрации
     public void reg_complete(View view) {
         TextView editFioText = (TextView) findViewById(R.id.fio);
@@ -120,18 +135,17 @@ public class MainActivity extends ActionBarActivity {
         buttonBack.setVisibility(View.VISIBLE);
         switch (tag) {
              case "menu": {
-                 buttonBack.setVisibility(View.INVISIBLE);
+                 LoaderHide(); buttonBack.setVisibility(View.INVISIBLE);
                  setPage(R.layout.menu_list);
                  break;
              }
             case "team": {
                 setPage(R.layout.team);
-                Team t = new Team(getApplicationContext());
                 break;
             }
             case "base": {  setPage(R.layout.base); break; }
             case "form": {  setPage(R.layout.form); break; }
-            case "games": { setPage(R.layout.games); break; }
+            case "games": { LoaderShow(); setPage(R.layout.games); break; }
             case "champ": { setPage(R.layout.champ); break; }
             case "events": { setPage(R.layout.events); break; }
             case "training": { setPage(R.layout.training); break; }

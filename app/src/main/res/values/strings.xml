@@ -36,4 +36,6 @@
     <string name="btn_back">Назад</string>
     <string name="btn_create">Создать</string>
 
+    <string name="loader">Идет загрузка...</string>
+
 </resources>
