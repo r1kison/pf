@@ -53,4 +53,8 @@ public class NET {
 
     }
 
+    public void test() {
+
+    }
+
 }
