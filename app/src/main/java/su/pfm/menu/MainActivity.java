@@ -29,11 +29,16 @@ public class MainActivity extends ActionBarActivity {
     Animation animationFadeIn, animationFadeOut;
     Boolean reg;
 
+    protected PFGame pf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        // ========================================== Получение класса данных
+        pf = (PFGame) getApplication();
 
         // ========================================== Анимация
         animationFadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -53,11 +58,11 @@ public class MainActivity extends ActionBarActivity {
 
         // Бюджет
         money = (TextView) findViewById(R.id.money);
-        money.setText("9 999 999");
+        money.setText(String.valueOf(pf.data.money));
 
         // Репутация
         rep = (TextView) findViewById(R.id.rep);
-        rep.setText("9 999");
+        rep.setText(String.valueOf(pf.data.reputation));
 
         // ========================================== Загрузка страниц (по умолчанию меню)
         pager = (FrameLayout) findViewById(R.id.pager);
@@ -101,7 +106,11 @@ public class MainActivity extends ActionBarActivity {
                  setPage(R.layout.menu_list);
                  break;
              }
-            case "team": {  setPage(R.layout.team); break; }
+            case "team": {
+                setPage(R.layout.team);
+                Team t = new Team(getApplicationContext());
+                break;
+            }
             case "base": {  setPage(R.layout.base); break; }
             case "form": {  setPage(R.layout.form); break; }
             case "games": { setPage(R.layout.games); break; }
