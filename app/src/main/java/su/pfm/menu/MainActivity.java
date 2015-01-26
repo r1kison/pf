@@ -1,5 +1,7 @@
 package su.pfm.menu;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import su.pfm.utils.NET;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -30,6 +34,7 @@ public class MainActivity extends ActionBarActivity {
     Boolean reg;
 
     protected PFGame pf;
+    public NET net;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,17 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+
         // ========================================== Получение класса данных
         pf = (PFGame) getApplication();
+
+        // ========================================== Создание класса для запросов к серверу
+
+        net = new NET(getApplicationContext());
+
+        // ========================================== Получение айди от гугл аккаунта на устройстве
+
+        pf.data.userGoogleId = getUserId();
 
         // ========================================== Анимация
         animationFadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -50,11 +64,11 @@ public class MainActivity extends ActionBarActivity {
         // ========================================== Изменение данных команды
         // Счетчик игр
         games = (TextView) findViewById(R.id.games);
-        games.setText("5/10");
+        games.setText(String.valueOf(pf.data.gameCounter)+"/"+String.valueOf(pf.data.gameLimit));
 
         // Уровень / Лига
         league = (TextView) findViewById(R.id.league);
-        league.setText("5");
+        league.setText(String.valueOf(pf.data.league));
 
         // Бюджет
         money = (TextView) findViewById(R.id.money);
@@ -91,6 +105,10 @@ public class MainActivity extends ActionBarActivity {
 
     // Нажатие кнопки "Создать" при регистрации
     public void reg_complete(View view) {
+        TextView editFioText = (TextView) findViewById(R.id.fio);
+        TextView editTeamName = (TextView) findViewById(R.id.com);
+
+        net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
         data_line.setVisibility(View.VISIBLE);
         setPage(R.layout.menu_list);
     }
@@ -134,6 +152,20 @@ public class MainActivity extends ActionBarActivity {
                 break;
             }
         }
+    }
+
+    // ================================================= Возвращает почту-логин от гугл аккаунта
+    private String getUserId() {
+        AccountManager accountManager = AccountManager.get(getApplicationContext());
+
+        Account[] accounts = accountManager.getAccountsByType("com.google");
+
+        for (Account a: accounts) {
+            if (a.name.contains("@gmail.com")) {
+                return a.name;
+            }
+        }
+        return null;
     }
 
 }
