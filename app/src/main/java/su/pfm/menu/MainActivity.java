@@ -3,6 +3,7 @@ package su.pfm.menu;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
@@ -33,6 +34,8 @@ public class MainActivity extends ActionBarActivity {
     Animation animationFadeIn, animationFadeOut;
     Boolean reg;
 
+    SharedPreferences sPref;
+
     protected PFGame pf;
     public NET net;
 
@@ -42,6 +45,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        //LoaderShow();
 
         // ========================================== Получение класса данных
         pf = (PFGame) getApplication();
@@ -53,6 +57,7 @@ public class MainActivity extends ActionBarActivity {
         // ========================================== Получение айди от гугл аккаунта на устройстве
 
         pf.data.userGoogleId = getUserId();
+
 
         // ========================================== Анимация
         animationFadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
@@ -85,9 +90,10 @@ public class MainActivity extends ActionBarActivity {
         buttonBack = (Button) findViewById(R.id.btn_back);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
 
-        reg = true;
+        reg = net.checkRegistration(pf.data.userGoogleId,"123");
         if (!reg) {
             setPage(R.layout.menu_list);
+            buttonBack.setVisibility(View.INVISIBLE);
         } else {
             data_line.setVisibility(View.INVISIBLE);
             buttonBack.setVisibility(View.INVISIBLE);
@@ -123,9 +129,10 @@ public class MainActivity extends ActionBarActivity {
         TextView editFioText = (TextView) findViewById(R.id.fio);
         TextView editTeamName = (TextView) findViewById(R.id.com);
 
-        net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
+        net.createTeamRequest(this, pf, pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
         data_line.setVisibility(View.VISIBLE);
         setPage(R.layout.menu_list);
+       // Log.d("Preferences", pf.data.auth);
     }
 
     // Переключение страниц меню

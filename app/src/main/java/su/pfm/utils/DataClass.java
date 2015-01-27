@@ -10,6 +10,7 @@ public class DataClass {
     public String userGoogleId;
     public String fio;
     public String teamName;
+    public String auth;
     public int money = 10000;
     public int reputation = 100;
     public int gameCounter = 0;
