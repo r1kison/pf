@@ -9,11 +9,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
@@ -44,39 +44,43 @@ public class NET {
     }
 
     public void createTeamRequest(final String id, final String teamName, final String fio) {
-        final StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTRATION_URL, new Response.Listener<String>() {
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTRATION_URL + "?id=" + id + "&teamname=" + teamName + "&fio=" +fio, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
-                Log.d("Response", response);
-                switch(response) {
-                    case "invalid_data": break;
-                    default: {
-                        SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor ed = sPref.edit();
-                        ed.putString("auth", response);
-                        ed.commit();
-                        pf.data.auth=response;
-                        mma.test123();
-                        break;
+            public void onResponse(JSONObject response) {
+                //Log.d("Response", response);
+                try {
+                    String status = response.getString("status");
+                    switch(status) {
+                        case "error": {
+                            Log.d("error from server", response.getString("message"));
+                            break;
+                        }
+                        case "ok": {
+                            SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
+                            SharedPreferences.Editor ed = sPref.edit();
+                            ed.putString("auth", response.getString("auth"));
+                            ed.commit();
+                            pf.data.auth=response.getString("auth");
+                            mma.test123();
+                            break;
+                        }
                     }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("Error.Response", error.getMessage());
             }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("id", id);
-                params.put("teamname", teamName);
-                params.put("fio", fio);
-                return params;
-            }
-        };
+        });
 
-        mQueue.add(stringRequest);
+        mQueue.add(jsonObjectRequest);
 
     }
 
