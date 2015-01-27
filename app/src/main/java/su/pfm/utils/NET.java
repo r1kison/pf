@@ -51,7 +51,7 @@ public class NET {
                 switch(response) {
                     case "invalid_data": break;
                     default: {
-                        SharedPreferences sPref= act.getPreferences(Context.MODE_PRIVATE);
+                        SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
                         SharedPreferences.Editor ed = sPref.edit();
                         ed.putString("auth", response);
                         ed.commit();
@@ -80,9 +80,16 @@ public class NET {
 
     }
 
-    public boolean checkRegistration(final String id, final String auth) {
-
-        return true;
+    public boolean checkRegistration(final String id) {
+        SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
+        String auth = sPref.getString("auth", "Null");
+        if(auth=="Null") {
+            //ауфа нет в настройках - поэтому предлагаем регистрацию
+            return true;
+        } else {
+            //тут проверяем соответствие аутфов на сервере и если все норм, то получаем данные
+            return false;
+        }
     }
 
 }

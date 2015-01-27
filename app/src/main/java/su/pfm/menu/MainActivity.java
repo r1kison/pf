@@ -46,7 +46,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        //LoaderShow();
+        // ========================================== Отображаем лоадер пока получаем данные
+        ltInflater = getLayoutInflater();
+        loader = (FrameLayout) findViewById(R.id.loader);
+        LoaderShow();
 
         // ========================================== Получение класса данных
         pf = (PFGame) getApplication();
@@ -87,19 +90,19 @@ public class MainActivity extends ActionBarActivity {
 
         // ========================================== Загрузка страниц (по умолчанию меню)
         pager = (FrameLayout) findViewById(R.id.pager);
-        loader = (FrameLayout) findViewById(R.id.loader);
-        ltInflater = getLayoutInflater();
         buttonBack = (Button) findViewById(R.id.btn_back);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
 
-        reg = net.checkRegistration(pf.data.userGoogleId,"123");
+        reg = net.checkRegistration(pf.data.userGoogleId);
         if (!reg) {
             setPage(R.layout.menu_list);
             buttonBack.setVisibility(View.INVISIBLE);
+            LoaderHide();
         } else {
             data_line.setVisibility(View.INVISIBLE);
             buttonBack.setVisibility(View.INVISIBLE);
             setPage(R.layout.registration); // Регистрация!
+            LoaderHide();
         }
     }
 
@@ -132,6 +135,7 @@ public class MainActivity extends ActionBarActivity {
         TextView editTeamName = (TextView) findViewById(R.id.com);
 
         net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
+
         data_line.setVisibility(View.VISIBLE);
         setPage(R.layout.menu_list);
         //Log.d("Preferences", pf.data.auth);
