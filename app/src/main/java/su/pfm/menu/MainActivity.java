@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -53,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
         // ========================================== Создание класса для запросов к серверу
 
         net = new NET(getApplicationContext(), pf, this);
+        net.setCallback(this);
 
         // ========================================== Получение айди от гугл аккаунта на устройстве
 
@@ -133,6 +135,10 @@ public class MainActivity extends ActionBarActivity {
         data_line.setVisibility(View.VISIBLE);
         setPage(R.layout.menu_list);
         //Log.d("Preferences", pf.data.auth);
+    }
+
+    public void test123() {
+        Log.d("Preferences", pf.data.auth);
     }
 
     // Переключение страниц меню

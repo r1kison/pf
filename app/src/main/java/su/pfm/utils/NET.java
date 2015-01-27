@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
 
 /**
@@ -28,6 +29,7 @@ public class NET {
     public static final String CHECK_REGISTRATION_URL = "check_registration.php";
     public PFGame pf;
     public Activity act;
+    public MainActivity mma;
 
     public NET(Context context, PFGame tpf, Activity tact) {
 
@@ -35,6 +37,10 @@ public class NET {
         pf = tpf;
         act = tact;
 
+    }
+
+    public void setCallback(MainActivity m) {
+        mma = m;
     }
 
     public void createTeamRequest(final String id, final String teamName, final String fio) {
@@ -50,7 +56,7 @@ public class NET {
                         ed.putString("auth", response);
                         ed.commit();
                         pf.data.auth=response;
-
+                        mma.test123();
                         break;
                     }
                 }
