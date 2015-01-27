@@ -30,6 +30,7 @@ public class NET {
     public PFGame pf;
     public Activity act;
     public MainActivity mma;
+    public String auth;
 
     public NET(Context context, PFGame tpf, Activity tact) {
 
@@ -63,7 +64,9 @@ public class NET {
                             ed.putString("auth", response.getString("auth"));
                             ed.commit();
                             pf.data.auth=response.getString("auth");
-                            mma.test123();
+                            pf.data.fio=fio;
+                            pf.data.teamName=teamName;
+                            mma.show_menu();
                             break;
                         }
                     }
@@ -86,12 +89,46 @@ public class NET {
 
     public boolean checkRegistration(final String id) {
         SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
-        String auth = sPref.getString("auth", "Null");
+        auth = sPref.getString("auth", "Null");
         if(auth=="Null") {
             //ауфа нет в настройках - поэтому предлагаем регистрацию
             return true;
         } else {
             //тут проверяем соответствие аутфов на сервере и если все норм, то получаем данные
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL+CHECK_REGISTRATION_URL + "?id=" + id + "&auth=" + auth, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    //Log.d("Response", response);
+                    try {
+                        String status = response.getString("status");
+                        switch(status) {
+                            case "error": {
+                                Log.d("error from server", response.getString("message"));
+                                mma.show_registration();
+                                break;
+                            }
+                            case "ok": {
+                                pf.data.fio=response.getString("fio");
+                                pf.data.teamName=response.getString("team");
+                                pf.data.auth=auth;
+                                mma.show_menu();
+                                break;
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.Response", error.getMessage());
+                }
+            });
+
+            mQueue.add(jsonObjectRequest);
             return false;
         }
     }

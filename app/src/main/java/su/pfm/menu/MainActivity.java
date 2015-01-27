@@ -91,19 +91,32 @@ public class MainActivity extends ActionBarActivity {
         // ========================================== Загрузка страниц (по умолчанию меню)
         pager = (FrameLayout) findViewById(R.id.pager);
         buttonBack = (Button) findViewById(R.id.btn_back);
+        buttonBack.setVisibility(View.INVISIBLE);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
 
-        reg = net.checkRegistration(pf.data.userGoogleId);
+        reg=net.checkRegistration(pf.data.userGoogleId);
         if (!reg) {
-            setPage(R.layout.menu_list);
-            buttonBack.setVisibility(View.INVISIBLE);
-            LoaderHide();
-        } else {
-            data_line.setVisibility(View.INVISIBLE);
-            buttonBack.setVisibility(View.INVISIBLE);
-            setPage(R.layout.registration); // Регистрация!
-            LoaderHide();
-        }
+            show_registration();
+        } //else {
+           //show_menu();
+        //}
+    }
+
+    //============Метод для отображения страницы с меню ,если пользователь зарегистрирован
+    public void show_menu()
+    {
+        setPage(R.layout.menu_list);
+        buttonBack.setVisibility(View.INVISIBLE);
+        LoaderHide();
+    }
+
+    //============Метод для отображения страницы с регистрацией ,если пользователь не зарегистрирован
+    public void show_registration()
+    {
+        data_line.setVisibility(View.INVISIBLE);
+        buttonBack.setVisibility(View.INVISIBLE);
+        setPage(R.layout.registration); // Регистрация!
+        LoaderHide();
     }
 
     // Функция переключения страницы
