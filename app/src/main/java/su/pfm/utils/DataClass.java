@@ -11,14 +11,15 @@ public class DataClass {
     public String fio;
     public String teamName;
     public String auth;
+    public String temp;
     public int money = 10000;
-    public int reputation = 100;
-    public int gameCounter = 0;
+    public int rep = 100;
+    public int exp = 0;
+    public int gameCounter = 10;
     public int gameLimit = 10;
     public int league = 1;
-    public ArrayList<Object> players;
+    public ArrayList players;
 
-    public DataClass() {
+    public DataClass() { }
 
-    }
 }

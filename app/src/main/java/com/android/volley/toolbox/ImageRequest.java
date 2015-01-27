@@ -16,16 +16,16 @@
 
 package com.android.volley.toolbox;
 
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
+
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
-
-import android.graphics.Bitmap;
-import android.graphics.Bitmap.Config;
-import android.graphics.BitmapFactory;
 
 /**
  * A canned request for getting an image at a given URL and calling
@@ -46,7 +46,7 @@ public class ImageRequest extends Request<Bitmap> {
     private final int mMaxWidth;
     private final int mMaxHeight;
 
-    /** Decoding lock so that we don't decode more than one image at a time (to avoid OOM's) */
+    /** Decoding dialog so that we don't decode more than one image at a time (to avoid OOM's) */
     private static final Object sDecodeLock = new Object();
 
     /**
@@ -120,7 +120,7 @@ public class ImageRequest extends Request<Bitmap> {
 
     @Override
     protected Response<Bitmap> parseNetworkResponse(NetworkResponse response) {
-        // Serialize all decode on a global lock to reduce concurrent heap usage.
+        // Serialize all decode on a global dialog to reduce concurrent heap usage.
         synchronized (sDecodeLock) {
             try {
                 return doParse(response);
