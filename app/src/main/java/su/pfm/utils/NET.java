@@ -26,14 +26,18 @@ public class NET {
     public static final String SERVER_URL = "http://109.234.156.4/pf_mobile/";
     public static final String REGISTRATION_URL = "http://109.234.156.4/pf_mobile/registration.php";
     public static final String CHECK_REGISTRATION_URL = "check_registration.php";
+    public PFGame pf;
+    public Activity act;
 
-    public NET(Context context) {
+    public NET(Context context, PFGame tpf, Activity tact) {
 
         mQueue = Volley.newRequestQueue(context);
+        pf = tpf;
+        act = tact;
 
     }
 
-    public void createTeamRequest(final Activity act, final PFGame pf, final String id, final String teamName, final String fio) {
+    public void createTeamRequest(final String id, final String teamName, final String fio) {
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTRATION_URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
 
         // ========================================== Создание класса для запросов к серверу
 
-        net = new NET(getApplicationContext());
+        net = new NET(getApplicationContext(), pf, this);
 
         // ========================================== Получение айди от гугл аккаунта на устройстве
 
@@ -129,10 +129,10 @@ public class MainActivity extends ActionBarActivity {
         TextView editFioText = (TextView) findViewById(R.id.fio);
         TextView editTeamName = (TextView) findViewById(R.id.com);
 
-        net.createTeamRequest(this, pf, pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
+        net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
         data_line.setVisibility(View.VISIBLE);
         setPage(R.layout.menu_list);
-       // Log.d("Preferences", pf.data.auth);
+        //Log.d("Preferences", pf.data.auth);
     }
 
     // Переключение страниц меню
