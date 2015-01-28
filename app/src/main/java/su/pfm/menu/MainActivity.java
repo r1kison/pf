@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity {
         pf = (PFGame) getApplication();
 
         // ========== Создание класса для запросов к серверу
-        net = new NET(getApplicationContext(), pf, this);
+        net = new NET(getApplicationContext(), pf);
         net.setCallback(this);
 
         // ========== Получение айди от гугл аккаунта на устройстве

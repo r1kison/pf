@@ -12,11 +12,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
+import su.pfm.menu.Player;
 
 /**
  * Created by rumaster on 26.01.2015.
@@ -32,11 +34,10 @@ public class NET {
     public MainActivity mma;
     public String auth;
 
-    public NET(Context context, PFGame tpf, Activity tact) {
+    public NET(Context context, PFGame tpf) {
 
         mQueue = Volley.newRequestQueue(context);
         pf = tpf;
-        act = tact;
 
     }
 
@@ -116,6 +117,13 @@ public class NET {
                                 pf.data.exp = response.getInt("exp");
                                 pf.data.gameCounter = response.getInt("games_current");
                                 pf.data.gameLimit = response.getInt("games_limit");
+                                String stringPlayers = response.getString("players");
+                                JSONArray temp = new JSONArray(stringPlayers);
+                                for (int i = 0; i < temp.length(); i++) {
+                                    JSONObject oneplayer = temp.getJSONObject(i);
+                                    pf.data.players.add(new Player(oneplayer));
+                                    //Log.d("test players", pf.data.players.get(i).name);
+                                }
                                 mma.setData();
                                 mma.showMenu();
                                 break;
