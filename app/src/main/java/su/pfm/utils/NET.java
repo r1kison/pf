@@ -16,6 +16,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
 import su.pfm.menu.Player;
@@ -119,6 +121,7 @@ public class NET {
                                 pf.data.gameLimit = response.getInt("games_limit");
                                 String stringPlayers = response.getString("players");
                                 JSONArray temp = new JSONArray(stringPlayers);
+                                pf.data.players = new ArrayList<>();
                                 for (int i = 0; i < temp.length(); i++) {
                                     JSONObject oneplayer = temp.getJSONObject(i);
                                     pf.data.players.add(new Player(oneplayer));

@@ -20,8 +20,11 @@ public class DataClass {
     public int gameCounter = 10;
     public int gameLimit = 10;
     public int league = 1;
-    public ArrayList<Player> players = new ArrayList<>();
+    public ArrayList<Player> players;
+
 
     public DataClass() { }
+
+
 
 }

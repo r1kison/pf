@@ -16,6 +16,7 @@ public class Player {
     public int plevel;
 
     public Player(JSONObject mJson) {
+
         try {
             name = mJson.getString("name");
             position = mJson.getString("position");
@@ -24,5 +25,7 @@ public class Player {
             e.printStackTrace();
         }
     }
+
+
 
 }
