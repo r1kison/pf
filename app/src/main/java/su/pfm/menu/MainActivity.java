@@ -12,10 +12,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import su.pfm.utils.NET;
+import su.pfm.utils.PlayerViewAdapter;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -26,9 +28,11 @@ public class MainActivity extends ActionBarActivity {
     Dialog dialog;
     RelativeLayout body, data_line;
     Animation LoaderAnimationIn, LoaderAnimationOut;
+    public ListView teamListView;
 
     protected PFGame pf;
     public NET net;
+    private PlayerViewAdapter pva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,7 @@ public class MainActivity extends ActionBarActivity {
 
         // ========== Проверка авторизации
         net.checkRegistration(pf.data.userGoogleId);
+
     }
 
     // ========== Метод для отображения страницы с меню ,если пользователь зарегистрирован
@@ -153,7 +158,10 @@ public class MainActivity extends ActionBarActivity {
         viewShow(button_back);
         switch (tag) {
             case "menu": { LoaderHide(); viewHide(button_back); setPage(R.layout.menu_list); break; }
-            case "team": { showTeam(); break; }
+            case "team": {
+            showTeam();
+                break;
+            }
             case "base": {  setPage(R.layout.base); break; }
             case "form": {  setPage(R.layout.form); break; }
             case "games": { setPage(R.layout.games); break; }
@@ -202,6 +210,9 @@ public class MainActivity extends ActionBarActivity {
         setPage(R.layout.team);
         TextView team_name = (TextView) findViewById(R.id.team_name);
         team_name.setText(pf.data.teamName);
+        pva = new PlayerViewAdapter(getApplicationContext(), pf.data.players);
+        teamListView = (ListView) findViewById(R.id.playerslistView);
+        teamListView.setAdapter(pva);
     }
 
     // ============ Рейтинг

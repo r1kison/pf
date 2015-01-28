@@ -12,19 +12,11 @@
         android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:layout_below="@+id/team_name">
-
-        <!-- КОНТЕЙНЕР ИГРОКОВ -->
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/players_cont">
-        </ListView>
-
-    </ScrollView>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/playerslistView"
+        android:layout_below="@+id/team_name"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

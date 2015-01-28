@@ -13,13 +13,13 @@ public class Player {
     public String name;
     public String country;
     public String position;
-    public String plevel;
+    public int plevel;
 
     public Player(JSONObject mJson) {
         try {
             name = mJson.getString("name");
             position = mJson.getString("position");
-            plevel = mJson.getString("skill");
+            plevel = mJson.getInt("skill");
         } catch (JSONException e) {
             e.printStackTrace();
         }
