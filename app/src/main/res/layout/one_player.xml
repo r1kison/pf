@@ -1,30 +1,49 @@
 <!-- ОДИН ФУТБОЛИСТ -->
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:background="@drawable/one_player_for"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="wrap_content"
+    android:padding="2dp">
 
-    <TextView
-        android:id="@+id/op_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:text="Андрей Красильников"
-        android:textColor="#ffffff"
-        android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true" />
-    <TextView
-        android:id="@+id/op_rate"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:text="90"
-        android:textColor="#ff000000"
-        android:layout_marginRight="10dp"
-        android:layout_centerVertical="true"
-        android:padding="5dp"
-        android:background="@drawable/rating_gradient"
-        android:layout_alignParentRight="true"
-        android:autoText="false"/>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/player_block"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/one_player_for">
+
+        <TextView
+            android:id="@+id/op_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Андрей Красильников"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowColor="#000000"
+            android:shadowRadius="1"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true" />
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="50dp"
+                android:layout_height="45dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/rating_gradient"
+                android:layout_alignParentRight="true"
+                android:textAlignment="center">
+                <TextView
+                    android:id="@+id/op_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:text="90"
+                    android:textColor="#ff000000"
+                    android:padding="5dp"
+                    android:autoText="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+
+    </RelativeLayout>
+
 </RelativeLayout>

@@ -17,6 +17,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/playerslistView"
         android:layout_below="@+id/team_name"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
