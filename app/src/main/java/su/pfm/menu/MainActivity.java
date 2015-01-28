@@ -17,7 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import su.pfm.utils.NET;
-import su.pfm.utils.PlayerViewAdapter;
+import su.pfm.utils.PlayerViewListAdapter;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
 
     protected PFGame pf;
     public NET net;
-    private PlayerViewAdapter pva;
+    private PlayerViewListAdapter pva;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,7 +210,7 @@ public class MainActivity extends ActionBarActivity {
         setPage(R.layout.team);
         TextView team_name = (TextView) findViewById(R.id.team_name);
         team_name.setText(pf.data.teamName);
-        pva = new PlayerViewAdapter(getApplicationContext(), pf.data.players);
+        pva = new PlayerViewListAdapter(getApplicationContext(), pf.data.players);
         teamListView = (ListView) findViewById(R.id.playerslistView);
         teamListView.setAdapter(pva);
     }
