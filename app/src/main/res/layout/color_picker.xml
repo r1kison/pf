@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/color_list"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ffffff"
+            android:background="#ffffff"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="cccccc"
+            android:background="#cccccc"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ff7ff068"
+            android:background="#ff7ff068"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="fffff665"
+            android:background="#fffff665"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ffb80007"
+            android:background="#ffb80007"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ffff0000"
+            android:background="#ffff0000"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ff3853b8"
+            android:background="#ff3853b8"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="ff85c4f7"
+            android:background="#ff85c4f7"/>
+
+        <ImageButton style="@style/OneColor"
+            android:tag="f0000000"
+            android:background="#f0000000"/>
+
+    </LinearLayout>
+
+</HorizontalScrollView>

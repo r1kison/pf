@@ -8,7 +8,6 @@ import su.pfm.menu.Player;
  * Created by rumaster on 26.01.2015.
  */
 public class DataClass {
-
     public String userGoogleId;
     public String fio;
     public String teamName;
@@ -21,10 +20,8 @@ public class DataClass {
     public int gameLimit = 10;
     public int league = 1;
     public ArrayList<Player> players;
-
+    public String[] form = { "#ffffff","1","#000000","1","#ff0000" };
 
     public DataClass() { }
-
-
 
 }

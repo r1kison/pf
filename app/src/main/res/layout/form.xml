@@ -1,6 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/shirt"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="70dp"
+        android:background="#cccccc">
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_below="@+id/shirt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Выбор цвета формы:"
+        android:id="@+id/textView" />
+    <RelativeLayout
+        android:id="@+id/color_picker_1"
+        android:layout_below="@id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Выбор цвета узора:"
+        android:id="@+id/textView3"
+        android:layout_below="@id/color_picker_1" />
+    <RelativeLayout
+        android:id="@+id/color_picker_2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textView3">
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Выбор цвета логотипа:"
+        android:id="@+id/textView5"
+        android:layout_below="@id/color_picker_2" />
+    <RelativeLayout
+        android:id="@+id/color_picker_3"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textView5"
+        android:layout_height="50dp">
+    </RelativeLayout>
+
+    <Button
+        style="@style/Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="saveForm"/>
+
+</RelativeLayout>

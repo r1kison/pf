@@ -37,6 +37,7 @@
     <string name="btn_create">Создать</string>
 
     <string name="loader">Идет загрузка...</string>
+    <string name="save">Сохранить</string>
 
     <!-- КОДЫ ОШИБОК -->
     <string name="invalid_data">Переданы не все данные!</string>

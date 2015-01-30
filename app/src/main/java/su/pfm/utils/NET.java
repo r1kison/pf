@@ -119,6 +119,7 @@ public class NET {
                                 pf.data.exp = response.getInt("exp");
                                 pf.data.gameCounter = response.getInt("games_current");
                                 pf.data.gameLimit = response.getInt("games_limit");
+
                                 String stringPlayers = response.getString("players");
                                 JSONArray temp = new JSONArray(stringPlayers);
                                 pf.data.players = new ArrayList<>();
@@ -127,6 +128,20 @@ public class NET {
                                     pf.data.players.add(new Player(oneplayer));
                                     //Log.d("test players", pf.data.players.get(i).name);
                                 }
+
+                                //
+                                // Получаем цвет формы
+                                String stringForm = response.getString("form");
+                                if (stringForm != null) {
+                                    temp = new JSONArray(stringForm);
+                                    JSONObject jform = temp.getJSONObject(0);
+                                    pf.data.form[0] = jform.getString("background_color");
+                                    pf.data.form[1] = jform.getString("pattern");
+                                    pf.data.form[2] = jform.getString("pattern_color");
+                                    pf.data.form[3] = jform.getString("logo");
+                                    pf.data.form[4] = jform.getString("logo_color");
+                                }
+
                                 mma.setData();
                                 mma.showMenu();
                                 break;
@@ -198,7 +213,6 @@ public class NET {
             }
         });
         mQueue.add(jsonObjectRequest);
-
     }
 
     // Получаем правила
@@ -225,5 +239,33 @@ public class NET {
         });
         mQueue.add(jsonObjectRequest);
     }
+
+    // Сохраняем форму
+    public void setForm(final String bg_color, final String pat, final String pat_color, final String logo, final String logo_color) {
+        mma.LoaderShow();
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL + "set_form.php" + "?user=" + pf.data.userGoogleId + "&auth=" + pf.data.auth + "&bg_color=" + bg_color + "&pat=" + pat + "&pat_color=" + pat_color + "&logo=" + logo + "&logo_color=" + logo_color, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                mma.LoaderHide();
+                try {
+                    mma.showDialog("Сохранение формы",response.getString("status"));
+                    pf.data.form[0] = "#"+mma.temp_form[0];
+                    pf.data.form[1] = mma.temp_form[1];
+                    pf.data.form[2] = "#"+mma.temp_form[2];
+                    pf.data.form[3] = mma.temp_form[3];
+                    pf.data.form[4] = "#"+mma.temp_form[4];
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("Error.Response", error.getMessage());
+            }
+        });
+        mQueue.add(jsonObjectRequest);
+    }
+
 
 }

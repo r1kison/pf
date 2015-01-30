@@ -3,15 +3,18 @@ package su.pfm.menu;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,6 +33,7 @@ public class MainActivity extends ActionBarActivity {
     Animation LoaderAnimationIn, LoaderAnimationOut;
     public ListView teamListView;
 
+    public String[] temp_form = {"ffffff","1","000000","1","ff0000"};
     protected PFGame pf;
     public NET net;
     private PlayerViewListAdapter pva;
@@ -163,7 +167,7 @@ public class MainActivity extends ActionBarActivity {
                 break;
             }
             case "base": {  setPage(R.layout.base); break; }
-            case "form": {  setPage(R.layout.form); break; }
+            case "form": {  showForm(); break; }
             case "games": { setPage(R.layout.games); break; }
             case "champ": { setPage(R.layout.champ); break; }
             case "events": { setPage(R.layout.events); break; }
@@ -213,6 +217,89 @@ public class MainActivity extends ActionBarActivity {
         pva = new PlayerViewListAdapter(getApplicationContext(), pf.data.players);
         teamListView = (ListView) findViewById(R.id.playerslistView);
         teamListView.setAdapter(pva);
+    }
+
+    // ============ Форма
+    public void saveForm(View view) {
+        //Log.d("ФОРМА2", temp_form[0]+" "+temp_form[1]+" "+temp_form[2]+" "+temp_form[3]+" "+temp_form[4]);
+        net.setForm(temp_form[0],temp_form[1],temp_form[2],temp_form[3],temp_form[4]);
+    }
+
+    public void initForm(RelativeLayout v, String[] form) {
+        RelativeLayout bg = (RelativeLayout) v.findViewById(R.id.bg);
+        bg.setBackgroundColor(Color.parseColor(form[0]));
+        Log.d("цвет1",form[0]);
+        RelativeLayout pat = (RelativeLayout) v.findViewById(R.id.pat);
+        pat.setBackgroundColor(Color.parseColor(form[2]));
+        Log.d("цвет2",form[2]);
+        RelativeLayout logo = (RelativeLayout) v.findViewById(R.id.logo);
+        logo.setBackgroundColor(Color.parseColor(form[4]));
+        Log.d("цвет3",form[4]);
+    }
+
+    public void showForm() {
+        View v;
+        setPage(R.layout.form);
+
+        // Футболка / Загружаем ее
+        RelativeLayout shirt = (RelativeLayout) findViewById(R.id.shirt);
+        v = ltInflater.inflate(R.layout.shirt, null, false);
+        shirt.addView(v);
+
+        // Назначаем цвета футболке из pf.data.form
+        initForm(shirt, pf.data.form);
+
+        // Загружаем ColorPicker 1 (цвет футболки)
+        RelativeLayout cp1 = (RelativeLayout) findViewById(R.id.color_picker_1); // ColorPicker выбора фона
+        v = ltInflater.inflate(R.layout.color_picker, null, false);
+        cp1.addView(v);
+        LinearLayout cl = (LinearLayout) cp1.findViewById(R.id.color_list);      // Контейнер цветов
+        int cc = cl.getChildCount();                                             // Кол-во цветов
+        for (int i=0;i<cc;i++) {
+            cl.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String clr = v.getTag().toString();
+                    RelativeLayout bg = (RelativeLayout) findViewById(R.id.bg);
+                    bg.setBackgroundColor(Color.parseColor("#"+clr));                // Заливаем фон футболки
+                    temp_form[0] = clr;
+                }
+            });
+        }
+
+        // Загружаем ColorPicker 2 (цвет узора)
+        RelativeLayout cp2 = (RelativeLayout) findViewById(R.id.color_picker_2); // ColorPicker выбора фона
+        v = ltInflater.inflate(R.layout.color_picker, null, false);
+        cp2.addView(v);
+        cl = (LinearLayout) cp2.findViewById(R.id.color_list);
+        for (int i=0;i<cc;i++) {
+            cl.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String clr = v.getTag().toString();
+                    RelativeLayout bg = (RelativeLayout) findViewById(R.id.pat);
+                    bg.setBackgroundColor(Color.parseColor("#"+clr));                // Заливаем узор футболки
+                    temp_form[2] = clr;
+                }
+            });
+        }
+
+        // Загружаем ColorPicker 3 (цвет логотипа)
+        RelativeLayout cp3 = (RelativeLayout) findViewById(R.id.color_picker_3);
+        v = ltInflater.inflate(R.layout.color_picker, null, false);
+        cp3.addView(v);
+        cl = (LinearLayout) cp3.findViewById(R.id.color_list);
+        for (int i=0;i<cc;i++) {
+            cl.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String clr = v.getTag().toString();
+                    RelativeLayout bg = (RelativeLayout) findViewById(R.id.logo);
+                    bg.setBackgroundColor(Color.parseColor("#"+clr));                // Заливаем логотип футболки
+                    temp_form[4] = clr;
+                }
+            });
+        }
     }
 
     // ============ Рейтинг
