@@ -48,8 +48,8 @@ public class NET {
     }
 
     // Регистрация
-    public void createTeamRequest(final String id, final String teamName, final String fio) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTRATION_URL + "?id=" + id + "&teamname=" + teamName + "&fio=" +fio, null, new Response.Listener<JSONObject>() {
+    public void createTeamRequest(final String id, final String teamName, final String fio, final String country) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, REGISTRATION_URL + "?id=" + id + "&teamname=" + teamName + "&fio=" +fio + "&country=" +country, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 //Log.d("Response", response);
@@ -66,9 +66,9 @@ public class NET {
                             SharedPreferences.Editor ed = sPref.edit();
                             ed.putString("auth", response.getString("auth"));
                             ed.commit();
-                            pf.data.auth=response.getString("auth");
-                            pf.data.fio=fio;
-                            pf.data.teamName=teamName;
+                            //Устанавливаем  pf.data данные из полученного ответа с сервера
+                            setPfDataFromJSON(response,"");
+                            mma.setData();
                             mma.showMenu();
                             break;
                         }
@@ -87,6 +87,7 @@ public class NET {
         });
         mQueue.add(jsonObjectRequest);
     }
+
 
     // Авторизация
     public void checkRegistration(final String id) {
@@ -111,37 +112,8 @@ public class NET {
                                 break;
                             }
                             case "ok": {
-                                pf.data.fio = response.getString("fio");
-                                pf.data.teamName = response.getString("team");
-                                pf.data.auth = auth;
-                                pf.data.money = response.getInt("money");
-                                pf.data.rep = response.getInt("rep");
-                                pf.data.exp = response.getInt("exp");
-                                pf.data.gameCounter = response.getInt("games_current");
-                                pf.data.gameLimit = response.getInt("games_limit");
-
-                                String stringPlayers = response.getString("players");
-                                JSONArray temp = new JSONArray(stringPlayers);
-                                pf.data.players = new ArrayList<>();
-                                for (int i = 0; i < temp.length(); i++) {
-                                    JSONObject oneplayer = temp.getJSONObject(i);
-                                    pf.data.players.add(new Player(oneplayer));
-                                    //Log.d("test players", pf.data.players.get(i).name);
-                                }
-
-                                //
-                                // Получаем цвет формы
-                                String stringForm = response.getString("form");
-                                if (stringForm != null) {
-                                    temp = new JSONArray(stringForm);
-                                    JSONObject jform = temp.getJSONObject(0);
-                                    pf.data.form[0] = jform.getString("background_color");
-                                    pf.data.form[1] = jform.getString("pattern");
-                                    pf.data.form[2] = jform.getString("pattern_color");
-                                    pf.data.form[3] = jform.getString("logo");
-                                    pf.data.form[4] = jform.getString("logo_color");
-                                }
-
+                                //Устанавливаем  pf.data данные из полученного ответа с сервера
+                                setPfDataFromJSON(response,auth);
                                 mma.setData();
                                 mma.showMenu();
                                 break;
@@ -268,4 +240,51 @@ public class NET {
     }
 
 
+    //Функция устанавливает данные в объекте pf.data из JSON ответа сервера.
+    //Первый параметр сам ответ от сервера, второй параметр строка auth. Если пользователь
+    //только регистрируется, то ауф есть в ответе от сервера. Если пользователь уже
+    // зарегистрирован, то берем значение из настроек и передаем как параметр в эту функцию
+    private void setPfDataFromJSON(JSONObject response, String authStr) {
+        try {
+            pf.data.country = response.getString("country");
+            pf.data.id = response.getString("id");
+            pf.data.fio = response.getString("fio");
+            pf.data.teamName = response.getString("team");
+            pf.data.money = response.getInt("money");
+            pf.data.rep = response.getInt("rep");
+            pf.data.exp = response.getInt("exp");
+            pf.data.gameCounter = response.getInt("games_current");
+            pf.data.gameLimit = response.getInt("games_limit");
+
+            String stringPlayers = response.getString("players");
+            JSONArray temp = new JSONArray(stringPlayers);
+            pf.data.players = new ArrayList<>();
+            for (int i = 0; i < temp.length(); i++) {
+                JSONObject oneplayer = temp.getJSONObject(i);
+                pf.data.players.add(new Player(oneplayer));
+                //Log.d("test players", pf.data.players.get(i).name);
+            }
+
+            String stringForm = response.getString("form");
+            if (stringForm != null) {
+                temp = new JSONArray(stringForm);
+                JSONObject jform = temp.getJSONObject(0);
+                pf.data.form[0] = jform.getString("background_color");
+                pf.data.form[1] = jform.getString("pattern");
+                pf.data.form[2] = jform.getString("pattern_color");
+                pf.data.form[3] = jform.getString("logo");
+                pf.data.form[4] = jform.getString("logo_color");
+            }
+
+            if(authStr=="")
+            {
+                pf.data.auth = response.getString("auth");
+            } else
+            {
+                pf.data.auth =authStr;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 }

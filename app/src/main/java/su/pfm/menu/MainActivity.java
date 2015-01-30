@@ -153,7 +153,8 @@ public class MainActivity extends ActionBarActivity {
     public void regComplete(View view) {
         TextView editFioText = (TextView) findViewById(R.id.fio);
         TextView editTeamName = (TextView) findViewById(R.id.com);
-        net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString());
+        String country=getResources().getConfiguration().locale.getCountry();
+        net.createTeamRequest(pf.data.userGoogleId, editFioText.getText().toString(), editTeamName.getText().toString(),country);
     }
 
     // ========== Переключение страниц меню
