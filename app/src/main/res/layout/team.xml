@@ -12,11 +12,12 @@
         android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/playerslistView"
-        android:layout_below="@+id/team_name"
-        android:layout_centerHorizontal="true"/>
+    <ExpandableListView
+        android:id="@+id/exListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indicatorLeft="250dp"
+        android:indicatorRight="300dp"
+        android:layout_alignTop="@+id/team_name" />
 
 </RelativeLayout>

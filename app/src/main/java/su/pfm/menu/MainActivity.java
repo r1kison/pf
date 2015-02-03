@@ -13,12 +13,17 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import su.pfm.utils.ExpListAdapter;
 import su.pfm.utils.NET;
 import su.pfm.utils.PlayerViewListAdapter;
 
@@ -211,13 +216,28 @@ public class MainActivity extends ActionBarActivity {
 
     // ============ Команда
     public void showTeam() {
-        LoaderShow(); LoaderHide();
+        LoaderShow();
+        LoaderHide();
         setPage(R.layout.team);
         TextView team_name = (TextView) findViewById(R.id.team_name);
         team_name.setText(pf.data.teamName);
-        pva = new PlayerViewListAdapter(getApplicationContext(), pf.data.players);
-        teamListView = (ListView) findViewById(R.id.playerslistView);
-        teamListView.setAdapter(pva);
+
+        ExpandableListView listView = (ExpandableListView) findViewById(R.id.exListView);
+
+        ArrayList<String> one_player_string = new ArrayList<String>();
+        one_player_string.add("Тренировать");
+        one_player_string.add("Выставить на трансфер");
+
+        ExpListAdapter adapter = new ExpListAdapter(getApplicationContext(), pf.data.players, one_player_string);
+        listView.setAdapter(adapter);
+
+        listView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+                Toast.makeText(parent.getContext(), Integer.toString(groupPosition) + " " + Integer.toString(childPosition), Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
     }
 
     // ============ Форма
