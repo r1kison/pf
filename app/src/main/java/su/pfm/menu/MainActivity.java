@@ -15,18 +15,13 @@ import su.pfm.utils.NET;
 public class MainActivity extends ActionBarActivity {
 
     TextView games, league, money, rep;
-//    FrameLayout pager, loader;
-//    LayoutInflater ltInflater;
     Button button_back;
 //    Dialog dialog;
-    RelativeLayout body, data_line;
+    RelativeLayout data_line;
 
-//    public ListView teamListView;
-//
-//    public String[] temp_form = {"ffffff","1","000000","1","ff0000"};
     protected PFGame pf;
     public NET net;
-//    private PlayerViewListAdapter pva;
+
 
     public MenuFragment menuFragment;
     public LoaderFragment loaderFragment;
