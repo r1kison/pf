@@ -12,8 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="33dp"
         android:layout_below="@+id/com"
-        android:layout_centerHorizontal="true"
-        android:onClick="regComplete"/>
+        android:layout_centerHorizontal="true" />
 
     <EditText
         style="@style/InputText"

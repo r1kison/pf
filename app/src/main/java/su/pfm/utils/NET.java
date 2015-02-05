@@ -1,6 +1,5 @@
 package su.pfm.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
@@ -32,7 +31,6 @@ public class NET {
     public static final String REGISTRATION_URL = "http://109.234.156.4/pf_mobile/registration.php";
     public static final String CHECK_REGISTRATION_URL = "check_registration.php";
     public PFGame pf;
-    public Activity act;
     public MainActivity mma;
     public String auth;
 
@@ -58,7 +56,7 @@ public class NET {
                     switch(status) {
                         case "error": {
                             Log.d("error from server", response.getString("message"));
-                            mma.showDialog("Ошибка!",response.getString("message"));
+                            //mma.showDialog("Ошибка!",response.getString("message"));
                             break;
                         }
                         case "ok": {
@@ -147,7 +145,7 @@ public class NET {
                 try {
                     temp = response.getString("text");
                     pf.data.temp = temp;
-                    mma.showRating();
+                    //mma.showRating();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -173,7 +171,7 @@ public class NET {
                 try {
                     temp = response.getString("text");
                     pf.data.temp = temp;
-                    mma.showHelp();
+                    //mma.showHelp();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -198,7 +196,7 @@ public class NET {
                 try {
                     temp = response.getString("text");
                     pf.data.temp = temp;
-                    mma.showRules();
+                    //mma.showRules();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -219,16 +217,16 @@ public class NET {
             @Override
             public void onResponse(JSONObject response) {
                 mma.LoaderHide();
-                try {
-                    mma.showDialog("Сохранение формы",response.getString("status"));
-                    pf.data.form[0] = "#"+mma.temp_form[0];
-                    pf.data.form[1] = mma.temp_form[1];
-                    pf.data.form[2] = "#"+mma.temp_form[2];
-                    pf.data.form[3] = mma.temp_form[3];
-                    pf.data.form[4] = "#"+mma.temp_form[4];
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    mma.showDialog("Сохранение формы",response.getString("status"));
+//                    pf.data.form[0] = "#"+mma.temp_form[0];
+//                    pf.data.form[1] = mma.temp_form[1];
+//                    pf.data.form[2] = "#"+mma.temp_form[2];
+//                    pf.data.form[3] = mma.temp_form[3];
+//                    pf.data.form[4] = "#"+mma.temp_form[4];
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         }, new Response.ErrorListener() {
             @Override
