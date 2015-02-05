@@ -2,6 +2,7 @@ package su.pfm.menu;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.Dialog;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,16 +11,21 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import su.pfm.fragments.FormFragment;
+import su.pfm.fragments.LoaderFragment;
+import su.pfm.fragments.MenuFragment;
+import su.pfm.fragments.RegistrationFragment;
+import su.pfm.fragments.TeamPageFragment;
 import su.pfm.utils.NET;
 
 public class MainActivity extends ActionBarActivity {
 
     TextView games, league, money, rep;
     Button button_back;
-//    Dialog dialog;
+    Dialog dialog;
     RelativeLayout data_line;
 
-    protected PFGame pf;
+    public PFGame pf;
     public NET net;
 
 
@@ -127,7 +133,7 @@ public class MainActivity extends ActionBarActivity {
         switch (tag) {
             case "menu": { LoaderHide(); viewHide(button_back); showMenu(); break; }
             case "team": {
-            showTeam();
+                showTeam();
                 break;
             }
 //            case "base": {  setPage(R.layout.base); break; }
@@ -141,11 +147,11 @@ public class MainActivity extends ActionBarActivity {
 //            case "rating": { net.getRating(); break; }
 //            case "help": { net.getHelp(); break; }
 //            case "rules": { net.getRules(); break;}
-//            case "lock": {
-//                viewHide(button_back);
-//                showDialog("Закрыто!","Союзы появятся после получения 20 уровня в игре!");
-//                break;
-//            }
+            case "lock": {
+                viewHide(button_back);
+                showDialog("Закрыто!","Союзы появятся после получения 20 уровня в игре!");
+                break;
+            }
             default: { break; }
         }
     }
@@ -161,16 +167,15 @@ public class MainActivity extends ActionBarActivity {
         }
         return "test@gmail.com";
     }
-//
-//    // ============ Popup - Диалог
-//    public void showDialog(String title,String cont) {
-//        dialog = new Dialog(MainActivity.this);
-//        dialog.setTitle(title);
-//        dialog.setContentView(R.layout.dialog);
-//        TextView txt = (TextView) dialog.findViewById(R.id.dialog_text);
-//        txt.setText(cont);
-//        dialog.show();
-//    }
+
+    // ============ Popup - Диалог
+    public void showDialog(String title,String cont) {
+        dialog = new Dialog(MainActivity.this);
+        dialog.setTitle(title);
+        dialog.setContentView(R.layout.dialog);
+        ((TextView) dialog.findViewById(R.id.dialog_text)).setText(cont);
+        dialog.show();
+    }
 
     // ============ Команда
     public void showTeam() {

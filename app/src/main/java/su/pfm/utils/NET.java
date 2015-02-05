@@ -56,7 +56,7 @@ public class NET {
                     switch(status) {
                         case "error": {
                             Log.d("error from server", response.getString("message"));
-                            //mma.showDialog("Ошибка!",response.getString("message"));
+                            mma.showDialog("Ошибка!",response.getString("message"));
                             break;
                         }
                         case "ok": {
@@ -225,7 +225,7 @@ public class NET {
                             break;
                         }
                         case "ok": {
-                            //mma.showDialog("Сохранение формы",response.getString("status"));
+                            mma.showDialog("Сохранение формы",response.getString("status"));
                             pf.data.form[0] = "#"+bg_color;
                             pf.data.form[1] = pat;
                             pf.data.form[2] = "#"+pat_color;

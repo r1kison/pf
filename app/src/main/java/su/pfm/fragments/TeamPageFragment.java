@@ -1,4 +1,4 @@
-package su.pfm.menu;
+package su.pfm.fragments;
 
 
 import android.app.Fragment;
@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import su.pfm.menu.MainActivity;
+import su.pfm.menu.R;
 import su.pfm.utils.ExpListAdapter;
 
 
