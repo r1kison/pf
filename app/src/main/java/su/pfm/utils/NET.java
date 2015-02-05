@@ -217,16 +217,26 @@ public class NET {
             @Override
             public void onResponse(JSONObject response) {
                 mma.LoaderHide();
-//                try {
-//                    mma.showDialog("Сохранение формы",response.getString("status"));
-//                    pf.data.form[0] = "#"+mma.temp_form[0];
-//                    pf.data.form[1] = mma.temp_form[1];
-//                    pf.data.form[2] = "#"+mma.temp_form[2];
-//                    pf.data.form[3] = mma.temp_form[3];
-//                    pf.data.form[4] = "#"+mma.temp_form[4];
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+                try {
+                    String status = response.getString("status");
+                    switch(status) {
+                        case "error": {
+                            Log.d("error from server", response.getString("message"));
+                            break;
+                        }
+                        case "ok": {
+                            //mma.showDialog("Сохранение формы",response.getString("status"));
+                            pf.data.form[0] = "#"+bg_color;
+                            pf.data.form[1] = pat;
+                            pf.data.form[2] = "#"+pat_color;
+                            pf.data.form[3] = logo;
+                            pf.data.form[4] = "#"+logo_color;
+                            break;
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
