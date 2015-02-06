@@ -193,13 +193,18 @@ public class MainActivity extends ActionBarActivity {
     //=============================================================
     public void show_Page(Fragment fragmentName, Boolean btnBack) {
         LoaderShow();
-        if(btnBack) {
+        if (btnBack) {
             viewShow(button_back);
         } else {
             viewHide(button_back);
         }
         ftrans = getFragmentManager().beginTransaction();
-        ftrans.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right);
+        if (fragmentName instanceof MenuFragment) {
+            //ftrans.setCustomAnimations(R.animator.slide_left_menu,R.animator.slide_right_menu);
+            ftrans.setCustomAnimations(R.animator.slide_right_menu, R.animator.slide_left_menu);
+        } else {
+            ftrans.setCustomAnimations(R.animator.slide_left_fragment, R.animator.slide_right_fragment);
+        }
         ftrans.replace(R.id.pager, fragmentName);
         ftrans.commit();
         LoaderHide();
