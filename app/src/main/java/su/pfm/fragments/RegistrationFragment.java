@@ -28,14 +28,17 @@ public class RegistrationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.registration, null);
+        final TextView editFioText = (TextView) v.findViewById(R.id.fio);
+        final TextView editTeamName = (TextView) v.findViewById(R.id.com);
+        //final String country=getResources().getConfiguration().locale.getCountry();
 
         (v.findViewById(R.id.createTeamBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity activity = (MainActivity) getActivity();
                 activity.net.createTeamRequest(activity.pf.data.userGoogleId,
-                        ((TextView) v.findViewById(R.id.fio)).getText().toString(),
-                        ((TextView) v.findViewById(R.id.com)).getText().toString(),
+                        editFioText.getText().toString(),
+                        editTeamName.getText().toString(),
                         getResources().getConfiguration().locale.getCountry());
             }
         });
