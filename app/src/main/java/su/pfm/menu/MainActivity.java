@@ -77,7 +77,7 @@ public class MainActivity extends ActionBarActivity {
     public void showMenu()
     {
         ftrans = getFragmentManager().beginTransaction();
-        ftrans.replace(R.id.pager, menuFragment);
+        ftrans.add(R.id.pager, menuFragment);
         ftrans.commit();
         viewHide(button_back);
         viewShow(data_line);
