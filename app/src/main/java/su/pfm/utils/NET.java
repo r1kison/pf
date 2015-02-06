@@ -162,19 +162,18 @@ public class NET {
 
     // Получаем текст помощи
     public void getHelp() {
-        mma.LoaderShow();
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL + "help.php", null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL+"help.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                String temp;
-                mma.LoaderHide();
+                //Log.d("Response", response);
                 try {
-                    temp = response.getString("text");
-                    pf.data.temp = temp;
-                    //mma.showHelp();
+                    String status = response.getString("text");
+                    pf.data.temp=status;
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -182,6 +181,7 @@ public class NET {
                 Log.d("Error.Response", error.getMessage());
             }
         });
+
         mQueue.add(jsonObjectRequest);
     }
 

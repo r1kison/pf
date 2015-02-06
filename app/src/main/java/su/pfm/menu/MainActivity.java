@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import su.pfm.fragments.FormFragment;
+import su.pfm.fragments.HelpFragment;
 import su.pfm.fragments.LoaderFragment;
 import su.pfm.fragments.MenuFragment;
 import su.pfm.fragments.RegistrationFragment;
@@ -36,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
     public FragmentTransaction ftrans;
     public TeamPageFragment teamPageFragment;
     public FormFragment formFragment;
+    public HelpFragment helpFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class MainActivity extends ActionBarActivity {
         registrationFragment = new RegistrationFragment();
         teamPageFragment = new TeamPageFragment();
         formFragment = new FormFragment();
+        helpFragment = new HelpFragment();
 
         // Элементы активити
         button_back = (Button) findViewById(R.id.btn_back);
@@ -136,7 +139,7 @@ public class MainActivity extends ActionBarActivity {
             case "menu": { show_Page(menuFragment,false); break; }
             case "team": { show_Page(teamPageFragment,true); break; }
 //            case "base": {  setPage(R.layout.base); break; }
-            case "form": {  show_Page(formFragment,true); break; }
+            case "form": {  show_Page(formFragment, true); break; }
 //            case "games": { setPage(R.layout.games); break; }
 //            case "champ": { setPage(R.layout.champ); break; }
 //            case "events": { setPage(R.layout.events); break; }
@@ -144,7 +147,7 @@ public class MainActivity extends ActionBarActivity {
 //            case "stadium": { setPage(R.layout.stadium); break; }
 //            case "busters": { setPage(R.layout.busters); break; }
 //            case "rating": { net.getRating(); break; }
-//            case "help": { net.getHelp(); break; }
+//            case "help": { show_Page(helpFragment, true); break;}
 //            case "rules": { net.getRules(); break;}
             case "lock": {
                 viewHide(button_back);
