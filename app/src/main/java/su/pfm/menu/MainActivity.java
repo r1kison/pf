@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
     public void showMenuAfterCheckingOfRegistration()
     {
         ftrans = getFragmentManager().beginTransaction();
-        if(getFragmentManager().getBackStackEntryCount()>0)
+      if(getFragmentManager().getBackStackEntryCount()>0)
         {
             ftrans.replace(R.id.pager, menuFragment);
         } else
@@ -199,6 +199,7 @@ public class MainActivity extends ActionBarActivity {
             viewHide(button_back);
         }
         ftrans = getFragmentManager().beginTransaction();
+        ftrans.setCustomAnimations(R.animator.slide_in_left, R.animator.slide_in_right);
         ftrans.replace(R.id.pager, fragmentName);
         ftrans.commit();
         LoaderHide();
