@@ -20,6 +20,7 @@ import su.pfm.menu.R;
  */
 public class HelpFragment extends Fragment {
 
+    public View rootView;
 
     public HelpFragment() {
         // Required empty public constructor
@@ -29,12 +30,16 @@ public class HelpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final MainActivity activity = (MainActivity) getActivity();
-        View rootView = inflater.inflate(R.layout.help, null);
-        activity.net.getHelp();
-        TextView help_text = (TextView) rootView.findViewById(R.id.help_text);
-        help_text.setText(Html.fromHtml(activity.pf.data.temp));
+        MainActivity activity = (MainActivity) getActivity();
+        rootView = inflater.inflate(R.layout.help, null);
+        activity.net.getHelp(this.getId());
+
         return rootView;
+    }
+
+    public void setTextHelp(String text) {
+        TextView help_text = (TextView) rootView.findViewById(R.id.help_text);
+        help_text.setText(Html.fromHtml(text));
     }
 
 

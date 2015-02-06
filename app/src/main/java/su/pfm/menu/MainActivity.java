@@ -62,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
         formFragment = new FormFragment();
         helpFragment = new HelpFragment();
 
+
         // Элементы активити
         button_back = (Button) findViewById(R.id.btn_back);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
@@ -147,7 +148,7 @@ public class MainActivity extends ActionBarActivity {
 //            case "stadium": { setPage(R.layout.stadium); break; }
 //            case "busters": { setPage(R.layout.busters); break; }
 //            case "rating": { net.getRating(); break; }
-//            case "help": { show_Page(helpFragment, true); break;}
+            case "help": { show_Page(helpFragment, true); break;}
 //            case "rules": { net.getRules(); break;}
             case "lock": {
                 viewHide(button_back);

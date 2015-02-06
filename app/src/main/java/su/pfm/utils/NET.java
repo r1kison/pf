@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import su.pfm.fragments.HelpFragment;
 import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
 import su.pfm.menu.Player;
@@ -136,16 +137,13 @@ public class NET {
 
     // Получаем рейтинг игроков
     public void getRating() {
-        mma.LoaderShow();
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL + "table.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 String temp;
-                mma.LoaderHide();
                 try {
                     temp = response.getString("text");
                     pf.data.temp = temp;
-                    //mma.showRating();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -161,14 +159,16 @@ public class NET {
     }
 
     // Получаем текст помощи
-    public void getHelp() {
+    public void getHelp(final Integer fragId) {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL+"help.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 //Log.d("Response", response);
                 try {
-                    String status = response.getString("text");
-                    pf.data.temp=status;
+                    //String status = response.getString("text");
+                    HelpFragment frag =(HelpFragment) mma.getFragmentManager().findFragmentById(fragId);
+                    frag.setTextHelp(response.getString("text"));
+                    //pf.data.temp=status;
 
                 } catch (JSONException e) {
                     e.printStackTrace();

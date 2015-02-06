@@ -40,8 +40,7 @@ public class TeamPageFragment extends Fragment {
         ExpandableListView listView = (ExpandableListView) v.findViewById(R.id.exListView);
 
         ArrayList<String> one_player_string = new ArrayList<String>();
-        one_player_string.add("Тренировать");
-        one_player_string.add("Выставить на трансфер");
+        one_player_string.add("Тут должны отображаться статы");
 
         ExpListAdapter adapter = new ExpListAdapter(getActivity().getApplicationContext(), activity.pf.data.players, one_player_string);
         listView.setAdapter(adapter);
