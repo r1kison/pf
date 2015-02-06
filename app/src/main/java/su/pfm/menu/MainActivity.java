@@ -66,6 +66,7 @@ public class MainActivity extends ActionBarActivity {
         money = (TextView) findViewById(R.id.money);
         rep = (TextView) findViewById(R.id.rep);
 
+
         // ============= Активируем лоадер на время получения данных
         LoaderShow();
 
@@ -131,7 +132,13 @@ public class MainActivity extends ActionBarActivity {
         String tag = view.getTag().toString();
         viewShow(button_back);
         switch (tag) {
-            case "menu": { LoaderHide(); viewHide(button_back); showMenu(); break; }
+            case "menu": {
+                LoaderHide();
+                viewHide(button_back);
+                ftrans = getFragmentManager().beginTransaction();
+                ftrans.replace(R.id.pager, menuFragment);
+                ftrans.commit();
+                break; }
             case "team": {
                 showTeam();
                 break;
