@@ -20,6 +20,7 @@ import su.pfm.menu.R;
  */
 public class HelpFragment extends Fragment {
 
+    public MainActivity activity;
     public View rootView;
 
     public HelpFragment() {
@@ -30,7 +31,8 @@ public class HelpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        MainActivity activity = (MainActivity) getActivity();
+        activity = (MainActivity) getActivity();
+        activity.LoaderShow();
         rootView = inflater.inflate(R.layout.help, null);
         activity.net.getHelp(this.getId());
 
@@ -40,6 +42,7 @@ public class HelpFragment extends Fragment {
     public void setTextHelp(String text) {
         TextView help_text = (TextView) rootView.findViewById(R.id.help_text);
         help_text.setText(Html.fromHtml(text));
+        activity.LoaderHide();
     }
 
 
