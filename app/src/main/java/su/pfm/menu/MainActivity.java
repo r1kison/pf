@@ -3,6 +3,7 @@ package su.pfm.menu;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Dialog;
+import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -75,7 +76,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     // ========== Метод для отображения страницы с меню ,если пользователь зарегистрирован
-    public void showMenu()
+    // или только что создал команду.
+    public void showMenuAfterCheckingOfRegistration()
     {
         ftrans = getFragmentManager().beginTransaction();
         ftrans.add(R.id.pager, menuFragment);
@@ -130,21 +132,11 @@ public class MainActivity extends ActionBarActivity {
     // ========== Переключение страниц меню
     public void menuClick(View view) {
         String tag = view.getTag().toString();
-        viewShow(button_back);
         switch (tag) {
-            case "menu": {
-                LoaderHide();
-                viewHide(button_back);
-                ftrans = getFragmentManager().beginTransaction();
-                ftrans.replace(R.id.pager, menuFragment);
-                ftrans.commit();
-                break; }
-            case "team": {
-                showTeam();
-                break;
-            }
+            case "menu": { show_Page(menuFragment,false); break; }
+            case "team": { show_Page(teamPageFragment,true); break; }
 //            case "base": {  setPage(R.layout.base); break; }
-            case "form": {  showForm(); break; }
+            case "form": {  show_Page(formFragment,true); break; }
 //            case "games": { setPage(R.layout.games); break; }
 //            case "champ": { setPage(R.layout.champ); break; }
 //            case "events": { setPage(R.layout.events); break; }
@@ -184,23 +176,23 @@ public class MainActivity extends ActionBarActivity {
         dialog.show();
     }
 
-    // ============ Команда
-    public void showTeam() {
+
+    //============ Метод отображает требуемый фрагмент ==========
+    // 1 параметр - фрагмент, который нужно отобразить
+    // 2 параметр - требуется ли отобразить кнопку назад
+    //=============================================================
+    public void show_Page(Fragment fragmentName, Boolean btnBack) {
         LoaderShow();
+        if(btnBack) {
+            viewShow(button_back);
+        } else {
+            viewHide(button_back);
+        }
+        ftrans = getFragmentManager().beginTransaction();
+        ftrans.replace(R.id.pager, fragmentName);
+        ftrans.commit();
         LoaderHide();
-
-        ftrans = getFragmentManager().beginTransaction();
-        ftrans.replace(R.id.pager, teamPageFragment);
-        ftrans.commit();
-
     }
-
-    public void showForm() {
-        ftrans = getFragmentManager().beginTransaction();
-        ftrans.replace(R.id.pager, formFragment);
-        ftrans.commit();
-    }
-
 //    // ============ Рейтинг
 //    public void showRating() {
 //        setPage(R.layout.rating);

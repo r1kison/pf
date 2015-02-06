@@ -67,7 +67,7 @@ public class NET {
                             //Устанавливаем  pf.data данные из полученного ответа с сервера
                             setPfDataFromJSON(response,"");
                             mma.setData();
-                            mma.showMenu();
+                            mma.showMenuAfterCheckingOfRegistration();
                             break;
                         }
                     }
@@ -113,7 +113,7 @@ public class NET {
                                 //Устанавливаем  pf.data данные из полученного ответа с сервера
                                 setPfDataFromJSON(response,auth);
                                 mma.setData();
-                                mma.showMenu();
+                                mma.showMenuAfterCheckingOfRegistration();
                                 break;
                             }
                         }
