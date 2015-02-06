@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
+
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         android:propertyName="x"
@@ -7,4 +8,29 @@
         android:valueTo="-1280"
         android:valueFrom="0"
         android:duration="250"/>
+
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:propertyName="ScaleX"
+        android:valueType="floatType"
+        android:valueTo="0.5"
+        android:valueFrom="1.0"
+        android:duration="250"/>
+
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:propertyName="ScaleY"
+        android:valueType="floatType"
+        android:valueTo="0.5"
+        android:valueFrom="1.0"
+        android:duration="250"/>
+
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:propertyName="alpha"
+        android:valueType="floatType"
+        android:valueTo="0"
+        android:valueFrom="1"
+        android:duration="200"/>
+
 </set>
