@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
         {
             ftrans.add(R.id.pager, menuFragment);
         }
-        ftrans.commit();
+        ftrans.commitAllowingStateLoss();
         viewHide(button_back);
         viewShow(data_line);
         LoaderHide();
