@@ -131,6 +131,7 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.pager).setVisibility(View.INVISIBLE);
         button_back.setClickable(false);
         ftrans = getFragmentManager().beginTransaction();
+        ftrans.setCustomAnimations(R.animator.fadeout, R.animator.fadein);
         ftrans.add(R.id.loader, loaderFragment);
         ftrans.commit();
     }
@@ -138,6 +139,7 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.pager).setVisibility(View.VISIBLE);
         button_back.setClickable(true);
         ftrans = getFragmentManager().beginTransaction();
+        ftrans.setCustomAnimations(R.animator.fadeout, R.animator.fadein);
         ftrans.remove(loaderFragment);
         ftrans.commit();
     }
