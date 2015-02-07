@@ -84,7 +84,12 @@ public class MainActivity extends ActionBarActivity {
     public void showMenuAfterCheckingOfRegistration()
     {
         ftrans = getFragmentManager().beginTransaction();
-        ftrans.add(R.id.pager, menuFragment);
+        if (registrationFragment.isAdded()) {
+            ftrans.replace(R.id.pager, menuFragment);
+        }
+        else {
+            ftrans.add(R.id.pager, menuFragment);
+        }
         ftrans.commitAllowingStateLoss();
         viewHide(button_back);
         viewShow(data_line);
