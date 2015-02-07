@@ -10,4 +10,12 @@
         android:valueFrom="1"
         android:duration="250"/>
 
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:propertyName="color"
+        android:valueType="floatType"
+        android:valueTo="#ffffff"
+        android:valueFrom="#000000"
+        android:duration="250"/>
+
 </set>

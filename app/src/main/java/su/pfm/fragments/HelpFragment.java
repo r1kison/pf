@@ -34,7 +34,6 @@ public class HelpFragment extends Fragment {
         activity = (MainActivity) getActivity();
         rootView = inflater.inflate(R.layout.help, null);
         activity.net.getHelp(this.getId());
-
         return rootView;
     }
 

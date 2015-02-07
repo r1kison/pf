@@ -8,6 +8,8 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,11 +27,11 @@ public class MainActivity extends ActionBarActivity {
     TextView games, league, money, rep;
     Button button_back;
     Dialog dialog;
-    RelativeLayout data_line;
+    RelativeLayout data_line, buttons_block;
+    Animation fadein, fadeout;
 
     public PFGame pf;
     public NET net;
-
 
     public MenuFragment menuFragment;
     public LoaderFragment loaderFragment;
@@ -62,15 +64,18 @@ public class MainActivity extends ActionBarActivity {
         formFragment = new FormFragment();
         helpFragment = new HelpFragment();
 
-
         // Элементы активити
         button_back = (Button) findViewById(R.id.btn_back);
+        buttons_block = (RelativeLayout)findViewById(R.id.buttons_block);
         data_line = (RelativeLayout)findViewById(R.id.data_line);
         games = (TextView) findViewById(R.id.games);
         league = (TextView) findViewById(R.id.league);
         money = (TextView) findViewById(R.id.money);
         rep = (TextView) findViewById(R.id.rep);
 
+        // ========== Анимация
+        fadein = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+        fadeout = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
 
         // ============= Активируем лоадер на время получения данных
         LoaderShow();
@@ -86,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
         ftrans = getFragmentManager().beginTransaction();
         ftrans.add(R.id.pager, menuFragment);
         ftrans.commitAllowingStateLoss();
-        viewHide(button_back);
+        viewHide(buttons_block);
         viewShow(data_line);
         LoaderHide();
     }
@@ -95,7 +100,7 @@ public class MainActivity extends ActionBarActivity {
     public void showRegistration()
     {
         viewHide(data_line);
-        viewHide(button_back);
+        viewHide(buttons_block);
         ftrans = getFragmentManager().beginTransaction();
         ftrans.add(R.id.pager, registrationFragment);
         ftrans.commitAllowingStateLoss();
@@ -143,10 +148,10 @@ public class MainActivity extends ActionBarActivity {
     public void menuClick(View view) {
         String tag = view.getTag().toString();
         switch (tag) {
-            case "menu": { show_Page(menuFragment,false); break; }
-            case "team": { show_Page(teamPageFragment,true); break; }
+            case "menu": { showPage(menuFragment, false); break; }
+            case "team": { showPage(teamPageFragment, true); break; }
 //            case "base": {  setPage(R.layout.base); break; }
-            case "form": {  show_Page(formFragment, true); break; }
+            case "form": {  showPage(formFragment, true); break; }
 //            case "games": { setPage(R.layout.games); break; }
 //            case "champ": { setPage(R.layout.champ); break; }
 //            case "events": { setPage(R.layout.events); break; }
@@ -154,10 +159,10 @@ public class MainActivity extends ActionBarActivity {
 //            case "stadium": { setPage(R.layout.stadium); break; }
 //            case "busters": { setPage(R.layout.busters); break; }
 //            case "rating": { net.getRating(); break; }
-            case "help": { show_Page(helpFragment, true); break;}
+            case "help": { showPage(helpFragment, true); break;}
 //            case "rules": { net.getRules(); break;}
             case "lock": {
-                viewHide(button_back);
+                viewHide(buttons_block);
                 showDialog("Закрыто!","Союзы появятся после получения 20 уровня в игре!");
                 break;
             }
@@ -186,48 +191,28 @@ public class MainActivity extends ActionBarActivity {
         dialog.show();
     }
 
-
     //============ Метод отображает требуемый фрагмент ==========
     // 1 параметр - фрагмент, который нужно отобразить
     // 2 параметр - требуется ли отобразить кнопку назад
     //=============================================================
-    public void show_Page(Fragment fragmentName, Boolean btnBack) {
-        LoaderShow();
+    public void showPage(Fragment fragmentName, Boolean btnBack) {
+        //LoaderShow();
         if (btnBack) {
-            viewShow(button_back);
+            buttons_block.setAnimation(fadein);
+            viewShow(buttons_block);
         } else {
-            viewHide(button_back);
+            viewHide(buttons_block);
         }
         ftrans = getFragmentManager().beginTransaction();
         if (fragmentName instanceof MenuFragment) {
-            //ftrans.setCustomAnimations(R.animator.slide_left_menu,R.animator.slide_right_menu);
-            ftrans.setCustomAnimations(R.animator.slide_right_menu, R.animator.slide_left_menu);
-            } else {
-            ftrans.setCustomAnimations(R.animator.slide_left_fragment, R.animator.slide_right_fragment);
+             ftrans.setCustomAnimations(R.animator.slide_right_menu, R.animator.slide_left_menu);
+        } else {
+             ftrans.setCustomAnimations(R.animator.slide_left_fragment, R.animator.slide_right_fragment);
         }
+        //ftrans.setCustomAnimations(R.animator.fadeout, R.animator.fadein);
+
         ftrans.replace(R.id.pager, fragmentName);
         ftrans.commit();
-
     }
-//    // ============ Рейтинг
-//    public void showRating() {
-//        setPage(R.layout.rating);
-//        TextView rating_text = (TextView) findViewById(R.id.rating_text);
-//        rating_text.setText(Html.fromHtml(pf.data.temp));
-//    }
-//
-//    // ============ Помощь
-//    public void showHelp() {
-//        setPage(R.layout.help);
-//        TextView help_text = (TextView) findViewById(R.id.help_text);
-//        help_text.setText(Html.fromHtml(pf.data.temp));
-//    }
-//
-//    // ============ Правила
-//    public void showRules() {
-//        setPage(R.layout.rules);
-//        TextView rules_text = (TextView) findViewById(R.id.rules_text);
-//        rules_text.setText(Html.fromHtml(pf.data.temp));
-//    }
 
 }

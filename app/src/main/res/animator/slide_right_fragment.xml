@@ -8,7 +8,7 @@
         android:valueType="floatType"
         android:valueTo="1280"
         android:valueFrom="0"
-        android:duration="400"/>
+        android:duration="300"/>
 
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
@@ -16,7 +16,7 @@
         android:valueType="floatType"
         android:valueTo="0.25"
         android:valueFrom="1.0"
-        android:duration="400"/>
+        android:duration="300"/>
 
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
@@ -24,7 +24,7 @@
         android:valueType="floatType"
         android:valueTo="0.25"
         android:valueFrom="1.0"
-        android:duration="400"/>
+        android:duration="300"/>
 
     <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
         android:interpolator="@android:anim/accelerate_decelerate_interpolator"
@@ -32,6 +32,6 @@
         android:valueType="floatType"
         android:valueTo="0"
         android:valueFrom="1"
-        android:duration="300"/>
+        android:duration="250"/>
 
 </set>
