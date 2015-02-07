@@ -32,7 +32,6 @@ public class HelpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         activity = (MainActivity) getActivity();
-        activity.LoaderShow();
         rootView = inflater.inflate(R.layout.help, null);
         activity.net.getHelp(this.getId());
 

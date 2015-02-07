@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity {
         viewHide(button_back);
         ftrans = getFragmentManager().beginTransaction();
         ftrans.add(R.id.pager, registrationFragment);
-        ftrans.commit();
+        ftrans.commitAllowingStateLoss();
         LoaderHide();
     }
 
@@ -196,12 +196,12 @@ public class MainActivity extends ActionBarActivity {
         if (fragmentName instanceof MenuFragment) {
             //ftrans.setCustomAnimations(R.animator.slide_left_menu,R.animator.slide_right_menu);
             ftrans.setCustomAnimations(R.animator.slide_right_menu, R.animator.slide_left_menu);
-        } else {
+            } else {
             ftrans.setCustomAnimations(R.animator.slide_left_fragment, R.animator.slide_right_fragment);
         }
         ftrans.replace(R.id.pager, fragmentName);
         ftrans.commit();
-        LoaderHide();
+
     }
 //    // ============ Рейтинг
 //    public void showRating() {

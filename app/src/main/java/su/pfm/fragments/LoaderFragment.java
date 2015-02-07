@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import su.pfm.menu.MainActivity;
 import su.pfm.menu.R;
 
 
@@ -42,7 +43,7 @@ public class LoaderFragment extends Fragment {
             @Override
             public void onAnimationRepeat(Animation animation) { }
             public void onAnimationEnd(Animation animation) {
-
+                ((MainActivity) getActivity()).LoaderHide();
             }
         });
 

@@ -104,6 +104,8 @@ public class FormFragment extends Fragment {
             }
         });
 
+        activity.LoaderHide();
+
         return rootView;
     }
 

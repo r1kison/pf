@@ -53,6 +53,8 @@ public class TeamPageFragment extends Fragment {
             }
         });
 
+        activity.LoaderHide();
+
         return v;
     }
 
