@@ -17,7 +17,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import su.pfm.fragments.GamesFragment;
 import su.pfm.fragments.HelpFragment;
+import su.pfm.menu.EnemyForList;
 import su.pfm.menu.MainActivity;
 import su.pfm.menu.PFGame;
 import su.pfm.menu.Player;
@@ -31,6 +33,7 @@ public class NET {
     public static final String SERVER_URL = "http://109.234.156.4/pf_mobile/";
     public static final String REGISTRATION_URL = "http://109.234.156.4/pf_mobile/registration.php";
     public static final String CHECK_REGISTRATION_URL = "check_registration.php";
+    public static final String GET_LIST_OF_ENEMY_URL = "list_of_enemy_for_game.php";
     public PFGame pf;
     public MainActivity mma;
     public String auth;
@@ -245,6 +248,57 @@ public class NET {
             }
         });
         mQueue.add(jsonObjectRequest);
+    }
+
+
+    public void getListOfEnemy(final Integer fragId, final Integer lvl) {
+        SharedPreferences sPref= mma.getPreferences(Context.MODE_PRIVATE);
+        auth = sPref.getString("auth", "Null");
+        if(auth=="Null") {
+            //ауфа нет в настройках - поэтому предлагаем регистрацию
+            Log.d("NO AUTH", "TRUE");
+        } else {
+            //тут проверяем соответствие аутфов на сервере и если все норм, то получаем данные
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL+GET_LIST_OF_ENEMY_URL + "?id=" + pf.data.userGoogleId + "&auth=" + auth + "&lvl="+lvl, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    //Log.d("Response", response);
+                    try {
+                        String status = response.getString("status");
+                        switch(status) {
+                            case "error": {
+                                Log.d("error from server", response.getString("message"));
+                                break;
+                            }
+                            case "ok": {
+                                Log.d("OK", "OK");
+                                String stringPlayers = response.getString("enemys");
+                                JSONArray temp = new JSONArray(stringPlayers);
+                                ArrayList enemysList = new ArrayList<EnemyForList>();
+                                for (int i = 0; i < temp.length(); i++) {
+                                    JSONObject oneEnemy = temp.getJSONObject(i);
+                                    enemysList.add(new EnemyForList(oneEnemy));
+                                    GamesFragment frag =(GamesFragment) mma.getFragmentManager().findFragmentById(fragId);
+                                    frag.setEnemyList(enemysList);
+                                }
+                                break;
+                            }
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d("Error.Response", error.getMessage());
+                }
+            });
+
+            mQueue.add(jsonObjectRequest);
+        }
     }
 
 

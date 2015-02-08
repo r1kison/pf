@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import su.pfm.fragments.FormFragment;
+import su.pfm.fragments.GamesFragment;
 import su.pfm.fragments.HelpFragment;
 import su.pfm.fragments.LoaderFragment;
 import su.pfm.fragments.MenuFragment;
@@ -38,6 +39,7 @@ public class MainActivity extends ActionBarActivity {
     public TeamPageFragment teamPageFragment;
     public FormFragment formFragment;
     public HelpFragment helpFragment;
+    public GamesFragment gamesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class MainActivity extends ActionBarActivity {
         registrationFragment = new RegistrationFragment();
         teamPageFragment = new TeamPageFragment();
         formFragment = new FormFragment();
+        gamesFragment = new GamesFragment();
         helpFragment = new HelpFragment();
 
 
@@ -147,7 +150,7 @@ public class MainActivity extends ActionBarActivity {
             case "team": { show_Page(teamPageFragment,true); break; }
 //            case "base": {  setPage(R.layout.base); break; }
             case "form": {  show_Page(formFragment, true); break; }
-//            case "games": { setPage(R.layout.games); break; }
+            case "games": { show_Page(gamesFragment, true); break;  }
 //            case "champ": { setPage(R.layout.champ); break; }
 //            case "events": { setPage(R.layout.events); break; }
 //            case "training": { setPage(R.layout.training); break; }
