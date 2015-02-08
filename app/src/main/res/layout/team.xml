@@ -3,13 +3,17 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="55dp">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Team Name"
         android:id="@+id/team_name"
-        android:layout_marginTop="55dp"
         android:layout_centerHorizontal="true" />
 
     <ExpandableListView
@@ -18,6 +22,9 @@
         android:layout_height="match_parent"
         android:indicatorLeft="250dp"
         android:indicatorRight="300dp"
-        android:layout_alignTop="@+id/team_name" />
+        android:layout_marginBottom="50dp"
+        android:layout_alignTop="@+id/team_name"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

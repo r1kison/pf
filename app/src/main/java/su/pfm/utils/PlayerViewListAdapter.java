@@ -54,11 +54,13 @@ public class PlayerViewListAdapter extends BaseAdapter {
             case "MID": playerBlock.setBackground(parent.getContext().getResources().getDrawable(R.drawable.one_player_mid)); break;
             case "FOR": playerBlock.setBackground(parent.getContext().getResources().getDrawable(R.drawable.one_player_for)); break;
         }
-        TextView nameText = (TextView) view.findViewById(R.id.op_name);
 
+        TextView nameText = (TextView) view.findViewById(R.id.op_name);
         nameText.setText(mPlayers.get(position).name);
+
         TextView rateText = (TextView) view.findViewById(R.id.op_rate);
         rateText.setText(String.valueOf(mPlayers.get(position).plevel) );
+
         return view;
     }
 }
