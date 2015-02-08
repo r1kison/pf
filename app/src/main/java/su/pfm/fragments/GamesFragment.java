@@ -20,6 +20,7 @@ import su.pfm.utils.EnemyListAdapter;
 public class GamesFragment extends Fragment {
 
     public MainActivity activity;
+
     public View rootView;
     public ArrayList<EnemyForList> enemys;
 

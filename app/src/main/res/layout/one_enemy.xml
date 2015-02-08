@@ -90,7 +90,7 @@
         android:layout_toEndOf="@+id/enemy_stat_mid" />
     <TextView
         android:id="@+id/enemy_stat_gk"
-        android:layout_width="30dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text=""

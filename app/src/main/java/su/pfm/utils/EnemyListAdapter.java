@@ -40,6 +40,7 @@ public class EnemyListAdapter extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View view, ViewGroup parent) {
 

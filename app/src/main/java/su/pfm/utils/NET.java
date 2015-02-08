@@ -281,6 +281,7 @@ public class NET {
                                     enemysList.add(new EnemyForList(oneEnemy));
                                     GamesFragment frag =(GamesFragment) mma.getFragmentManager().findFragmentById(fragId);
                                     frag.setEnemyList(enemysList);
+
                                 }
                                 break;
                             }
