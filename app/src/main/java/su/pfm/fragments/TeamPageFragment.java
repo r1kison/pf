@@ -37,7 +37,7 @@ public class TeamPageFragment extends Fragment {
         TextView team_name = (TextView) v.findViewById(R.id.team_name);
         team_name.setText(activity.pf.data.teamName);
 
-        ExpandableListView listView = (ExpandableListView) v.findViewById(R.id.exListView);
+        final ExpandableListView listView = (ExpandableListView) v.findViewById(R.id.exListView);
 
         ArrayList<String> one_player_string = new ArrayList<String>();
         one_player_string.add("Тут должны отображаться статы");
@@ -53,10 +53,23 @@ public class TeamPageFragment extends Fragment {
             }
         });
 
+        listView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+            int previousItem = -1;
+
+            @Override
+            public void onGroupExpand(int groupPosition) {
+                if(groupPosition != previousItem )
+                    listView.collapseGroup(previousItem );
+                previousItem = groupPosition;
+            }
+        });
+
         activity.LoaderHide();
 
         return v;
     }
+
+
 
 
 }
