@@ -163,7 +163,7 @@ public class NET {
 
     // Получаем текст помощи
     public void getHelp(final Integer fragId) {
-        mma.LoaderShow();
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_URL+"help.php", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {

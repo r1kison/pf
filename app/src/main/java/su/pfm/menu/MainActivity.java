@@ -128,11 +128,14 @@ public class MainActivity extends ActionBarActivity {
     public void LoaderShow() {
         findViewById(R.id.pager).setVisibility(View.INVISIBLE);
         button_back.setClickable(false);
-        ftrans = getFragmentManager().beginTransaction();
-        ftrans.setCustomAnimations(R.animator.fadeout, R.animator.fadein);
-        ftrans.add(R.id.loader, loaderFragment);
-        ftrans.commit();
+        if (!loaderFragment.isAdded()) {
+            ftrans = getFragmentManager().beginTransaction();
+            ftrans.setCustomAnimations(R.animator.fadeout, R.animator.fadein);
+            ftrans.add(R.id.loader, loaderFragment);
+            ftrans.commit();
+        }
     }
+
     public void LoaderHide() {
         findViewById(R.id.pager).setVisibility(View.VISIBLE);
         button_back.setClickable(true);
