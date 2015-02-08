@@ -63,6 +63,7 @@ public class MainActivity extends ActionBarActivity {
         teamPageFragment = new TeamPageFragment();
         formFragment = new FormFragment();
         helpFragment = new HelpFragment();
+        gamesFragment=new GamesFragment();
 
 
         // Элементы активити
@@ -149,7 +150,7 @@ public class MainActivity extends ActionBarActivity {
             case "team": { show_Page(teamPageFragment,true); break; }
 //            case "base": {  setPage(R.layout.base); break; }
             case "form": {  show_Page(formFragment, true); break; }
-//            case "games": { setPage(R.layout.games); break; }
+            case "games": { show_Page(gamesFragment, true); break;  }
 //            case "champ": { setPage(R.layout.champ); break; }
 //            case "events": { setPage(R.layout.events); break; }
 //            case "training": { setPage(R.layout.training); break; }

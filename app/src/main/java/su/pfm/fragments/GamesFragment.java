@@ -36,10 +36,6 @@ public class GamesFragment extends Fragment {
         activity = (MainActivity) getActivity();
 
         activity.net.getListOfEnemy(this.getId(), 0);
-       // ListView listOfEnemy=(ListView) v.findViewById(R.id.listOfEnemy);
-        //PlayerViewListAdapter adapter=new PlayerViewListAdapter(getActivity().getApplicationContext(),enemys);
-
-        activity.LoaderHide();
         return rootView;
     }
 
@@ -47,6 +43,7 @@ public class GamesFragment extends Fragment {
         ListView listOfEnemy=(ListView) rootView.findViewById(R.id.listOfEnemy);
         EnemyListAdapter adapter=new EnemyListAdapter(getActivity().getApplicationContext(),enemys);
         listOfEnemy.setAdapter(adapter);
+        activity.LoaderHide();
     }
 
 
